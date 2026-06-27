@@ -1,0 +1,45 @@
+stages:
+  - build
+  - lint
+  - code-quality
+  - deploy
+
+variables:
+  SONAR_HOST_URL: "http://host.docker.internal:9000"
+  SONAR_TOKEN: "sqp_f1561bc7568d6d8278ecbad6aa2c2c980238df41"
+
+build:
+  stage: build
+  image: node:20
+  script:
+    - npm install
+    - npm run build
+
+lint:
+  stage: lint
+  image: node:20
+  script:
+    - npm install
+    - npm run lint
+  allow_failure: true
+
+sonarqube-analysis:
+  stage: code-quality
+  image: sonarsource/sonar-scanner-cli:latest
+  script:
+    - sonar-scanner -Dsonar.projectKey=krms-faiz -Dsonar.sources=src -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.token=$SONAR_TOKEN
+  allow_failure: true
+
+deploy:
+  stage: deploy
+  image: node:20
+  script:
+    - npm install
+    - npm run build
+    - echo "Build successful - dist folder ready"
+    - ls dist/
+  artifacts:
+    paths:
+      - dist/
+  only:
+    - main

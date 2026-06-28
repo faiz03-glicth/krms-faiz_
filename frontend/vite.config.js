@@ -9,7 +9,7 @@ export default defineConfig({
     tailwindcss(),
   ],
   build: {
-    cssMinify: false
+    cssMinify: 'esbuild'
   },
   preview: {
     host: '0.0.0.0',

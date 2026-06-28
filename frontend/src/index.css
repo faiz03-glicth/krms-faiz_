@@ -7,3 +7,7 @@ themes:[
 "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade",
 "night", "coffee", "winter", "dim", "nord", "sunset", "caramellatte"]
 };
+
+@import "daisyui/theme/light.css" layer(base);
+@import "daisyui/theme/dark.css" layer(base);
+@import "daisyui/theme/emerald.css" layer(base);

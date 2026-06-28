@@ -11,3 +11,4 @@ export default defineConfig({
     allowedHosts: ['sea-lion-app-zijfg.ondigitalocean.app']
   }
 })
+    

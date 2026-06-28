@@ -8,6 +8,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  css: {
+    transformer: 'postcss'
+  },
   preview: {
     host: '0.0.0.0',
     port: 8080,
